@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="text-2xl font-extrabold text-teal-600 dark:text-teal-400 tracking-tight transition-colors">
-              Branderson
+              Branderson.Studio
             </Link>
           </div>
           <div className="flex items-center space-x-4 md:space-x-8">

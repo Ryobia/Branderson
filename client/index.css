@@ -1,2 +1,42 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
+
+/* =========================================
+   Custom Scrollbar
+   ========================================= */
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-300) var(--color-slate-50);
+}
+html.dark {
+  scrollbar-color: var(--color-slate-700) var(--color-slate-950);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-slate-50);
+}
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-slate-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-400);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-slate-800);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-700);
+}
