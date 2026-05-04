@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import Studio from './pages/Studio';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Privacy from './pages/Privacy';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -20,6 +21,7 @@ const AnimatedMain = () => {
           <Route path="/about" element={<About />} />
           <Route path="/studio" element={<Studio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </AnimatePresence>
     </main>
