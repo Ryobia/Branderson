@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router";
 import atomicAlliesIcon from "../assets/icon_atomic.png";
 import idleRainIcon from "../assets/icon_rain.png";
+import indieIndexIcon from "../assets/icon_indie.jpg";
 
 // Expanded mock data for the dedicated projects page
 const allProjects = [
@@ -26,31 +28,21 @@ const allProjects = [
     demoLink: "https://brandersonstudio.itch.io/idlerain",
     githubLink: "#",
     image: idleRainIcon,
+    privacyLink: "/privacy",
   },
   {
     id: 3,
-    title: "LevelUp Engine",
-    category: "Game Engine",
+    title: "Indie Index",
+    category: "Web App",
     description:
-      "A custom 2D game engine designed for web-based mini-games. Exportable to mobile wrappers.",
-    techStack: ["HTML5 Canvas", "TypeScript", "Vite"],
-    demoLink: "#",
+      "A site where users can discover indie shops, create wishlists, and share their favorite hidden gems in the small, family owned business scene.",
+    techStack: ["React", "CSS", "MongoDB", "Express", "Node.js"],
+    demoLink: "https://www.shopindieindex.com",
     githubLink: "#",
-    image: "",
+    image: indieIndexIcon,
   },
   {
     id: 4,
-    title: "Galactic Drifter",
-    category: "Web Game",
-    description:
-      "An arcade-style space shooter playable directly in the browser. Features global leaderboards and daily challenges.",
-    techStack: ["Phaser.js", "Express", "Redis"],
-    demoLink: "#",
-    githubLink: "#",
-    image: "",
-  },
-  {
-    id: 5,
     title: "Developer Portfolio",
     category: "Web App",
     description:
@@ -185,7 +177,15 @@ const Projects = () => {
               <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 {selectedProject.description}
               </p>
-              <div className="flex justify-end gap-3 md:gap-4">
+              <div className="flex justify-end gap-3 md:gap-4 items-center">
+                {selectedProject.privacyLink && (
+                  <Link 
+                    to={selectedProject.privacyLink} 
+                    className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors mr-auto underline underline-offset-2"
+                  >
+                    Privacy Policy
+                  </Link>
+                )}
                 <button
                   onClick={() => setSelectedProject(null)}
                   className="px-4 py-2 text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"

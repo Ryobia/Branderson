@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router';
 import atomicAlliesIcon from '../assets/icon_atomic.png';
 import idleRainIcon from '../assets/icon_rain.png';
 
@@ -22,7 +23,8 @@ const studioGames = [
     platform: ['iOS', 'Android', 'Web'],
     status: 'In Development',
     playLink: 'https://brandersonstudio.itch.io/idlerain',
-    image: idleRainIcon
+    image: idleRainIcon,
+    privacyLink: '/privacy'
   }
 ];
 
@@ -115,7 +117,15 @@ const Studio = () => {
                 </div>
               </div>
               <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">{selectedGame.description}</p>
-              <div className="flex justify-end gap-3 md:gap-4">
+              <div className="flex justify-end gap-3 md:gap-4 items-center">
+                {selectedGame.privacyLink && (
+                  <Link 
+                    to={selectedGame.privacyLink} 
+                    className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors mr-auto underline underline-offset-2"
+                  >
+                    Privacy Policy
+                  </Link>
+                )}
                 <button onClick={() => setSelectedGame(null)} className="px-4 py-2 text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors">Close</button>
                 <a href={selectedGame.playLink} target="_blank" rel="noreferrer" className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm">Play Now &rarr;</a>
               </div>

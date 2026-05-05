@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="mt-4 md:mt-0 flex space-x-6 items-center">
           <a href="https://github.com/Ryobia" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">GitHub</a>
           <a href="https://www.linkedin.com/in/1branderson/" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">LinkedIn</a>
-          <Link to="/privacy" className="text-sm text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Privacy Policy</Link>
+          <Link to="/privacy" className="text-sm text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">App Privacy Policy</Link>
         </div>
       </div>
     </footer>
