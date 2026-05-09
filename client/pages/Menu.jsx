@@ -10,6 +10,8 @@ const Menu = () => {
     whippedCream: false,
     strawberries: false,
     chocolateChips: false,
+    peanutButter: false,
+    nutella: false,
   });
   const [drinks, setDrinks] = useState({
     orangeJuice: false,
@@ -26,6 +28,9 @@ const Menu = () => {
   const [time, setTime] = useState('');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passcodeDate, setPasscodeDate] = useState('');
+  const [passcodeError, setPasscodeError] = useState(false);
 
   const handleToppingChange = (e) => {
     setToppings({ ...toppings, [e.target.name]: e.target.checked });
@@ -37,6 +42,15 @@ const Menu = () => {
 
   const handleSideChange = (e) => {
     setSides({ ...sides, [e.target.name]: e.target.checked });
+  };
+
+  const handlePasscodeSubmit = (e) => {
+    e.preventDefault();
+    if (passcodeDate === '2020-10-02') {
+      setIsAuthenticated(true);
+    } else {
+      setPasscodeError(true);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -90,6 +104,42 @@ const Menu = () => {
     };
     frame();
   };
+
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="py-12 md:py-24 max-w-lg mx-auto text-center"
+      >
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-rose-200 dark:border-rose-900/50 p-8 md:p-12">
+          <div className="text-5xl mb-6">🔒💖</div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-slate-100 mb-2 tracking-tight">Top Secret Menu</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-8">Answer the security question to access your Mother's Day surprise.</p>
+          <form onSubmit={handlePasscodeSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-bold text-rose-500 mb-2">When did you become a mother?</label>
+              <input 
+                type="date" 
+                required 
+                value={passcodeDate} 
+                onChange={(e) => { setPasscodeDate(e.target.value); setPasscodeError(false); }} 
+                className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border ${passcodeError ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300 dark:border-slate-700'} rounded-xl focus:ring-rose-500 focus:border-rose-500 text-slate-900 dark:text-slate-100 outline-none transition-colors text-center text-lg`} 
+              />
+              {passcodeError && (
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-500 text-sm mt-2 font-medium">
+                  That doesn't seem quite right, try again!
+                </motion.p>
+              )}
+            </div>
+            <button type="submit" className="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+              Unlock 🔓
+            </button>
+          </form>
+        </div>
+      </motion.div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -149,6 +199,8 @@ const Menu = () => {
               { id: 'whippedCream', label: '☁️ Whipped Cream' },
               { id: 'strawberries', label: '🍓 Fresh Strawberries' },
               { id: 'chocolateChips', label: '🍫 Chocolate Chips' },
+              { id: 'peanutButter', label: '🥜 Peanut Butter' },
+              { id: 'nutella', label: '🌰 Nutella' },
             ].map((topping) => (
               <motion.label 
                 key={topping.id} 
