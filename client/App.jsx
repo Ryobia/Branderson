@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
+import Menu from './pages/Menu';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -23,6 +24,7 @@ const AnimatedMain = () => {
           <Route path="/studio" element={<Studio />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/menu" element={<Menu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
@@ -30,14 +32,23 @@ const AnimatedMain = () => {
   );
 };
 
+const AppContent = () => {
+  const location = useLocation();
+  const isMenuPage = location.pathname === '/menu';
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
+      {!isMenuPage && <Navbar />}
+      <AnimatedMain />
+      {!isMenuPage && <Footer />}
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
-        <Navbar />
-        <AnimatedMain />
-        <Footer />
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 };
