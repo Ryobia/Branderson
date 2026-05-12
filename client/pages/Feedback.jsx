@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser';
 const Feedback = () => {
   const [formData, setFormData] = useState({
     name: '',
-    game: 'Atomic Allies',
+    game: 'Idle Rain',
     type: 'Bug Report',
     message: ''
   });
