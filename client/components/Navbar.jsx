@@ -46,6 +46,9 @@ const Navbar = () => {
               <Link to="/studio" className="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                 Studio
               </Link>
+              <Link to="/feedback" className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Feedback
+              </Link>
               <Link to="/contact" className="text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                 Contact
               </Link>

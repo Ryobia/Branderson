@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
+import Feedback from './pages/Feedback';
 import Menu from './pages/Menu';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -24,6 +25,7 @@ const AnimatedMain = () => {
           <Route path="/studio" element={<Studio />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/feedback" element={<Feedback />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
