@@ -3,7 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router";
 import atomicAlliesIcon from "../assets/icon_atomic.png";
 import idleRainIcon from "../assets/icon_rain.png";
+import bloomBattleIcon from "../assets/icon_bloom.svg";
 import indieIndexIcon from "../assets/icon_indie.jpg";
+
+const AppleIcon = ({ className = "w-4 h-4" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.63 1.35-.57.66-1.07 1.73-.93 2.76 1.01.08 2.02-.51 2.64-1.26z" />
+  </svg>
+);
+
+const GooglePlayIcon = ({ className = "w-4 h-4" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M3.609 1.814L13.793 12 3.61 22.186c-.37-.367-.61-.88-.61-1.46V3.274c0-.58.24-1.093.609-1.46zm11.242 11.244l2.502 2.503-11.838 6.77 9.336-9.273zm0-2.116L5.513 1.67l11.838 6.77-2.5 2.502zm1.472 1.058l3.774 2.159c.787.45.787 1.185 0 1.635l-3.774 2.16-2.228-2.227 2.228-2.227z" />
+  </svg>
+);
 
 // Expanded mock data for the dedicated projects page
 const allProjects = [
@@ -24,14 +37,25 @@ const allProjects = [
     category: "Game",
     description:
       "An idle progression game where you collect rain, buy flowers, and utilize prestige mechanics to grow your tranquil garden.",
-    techStack: ["Godot", "iOS", "Android", "Web"],
-    demoLink: "https://brandersonstudio.itch.io/idlerain",
+    techStack: ["Godot", "iOS", "Android"],
+    appleStoreLink: "https://apps.apple.com/us/app/idle-rain-asmr-zen-garden/id6786962649",
+    googlePlayLink: "https://play.google.com/store/apps/details?id=com.idlerain.atomic",
     githubLink: "#",
     image: idleRainIcon,
     privacyLink: "/privacy",
   },
   {
     id: 3,
+    title: "Bloom & Battle",
+    category: "Game",
+    description:
+      "A plant breeding and auto-battler where you breed plants together to create exciting fusions to take into the campaign against enemy pests. Features in-depth stats and passive traits to encourage min-maxing perfect specimens.",
+    techStack: ["Godot", "iOS", "Android"],
+    status: "Testing Soon",
+    image: bloomBattleIcon,
+  },
+  {
+    id: 4,
     title: "Indie Index",
     category: "Web App",
     description:
@@ -42,7 +66,7 @@ const allProjects = [
     image: indieIndexIcon,
   },
   {
-    id: 4,
+    id: 5,
     title: "Developer Portfolio",
     category: "Web App",
     description:
@@ -94,7 +118,7 @@ const Projects = () => {
                   Project Image Preview
                 </span>
               )}
-              <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-teal-700 dark:text-teal-400 shadow-sm transition-colors">
+              <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs sm:text-sm font-bold text-teal-700 dark:text-teal-400 shadow-sm transition-colors">
                 {project.category}
               </div>
             </div>
@@ -109,7 +133,7 @@ const Projects = () => {
                 {project.techStack?.map((tech, index) => (
                   <span
                     key={index}
-                    className="bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-semibold px-2.5 py-1 rounded border border-teal-200 dark:border-teal-800 transition-colors"
+                    className="bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs sm:text-sm font-semibold px-2.5 py-1 rounded border border-teal-200 dark:border-teal-800 transition-colors"
                   >
                     {tech}
                   </span>
@@ -117,24 +141,79 @@ const Projects = () => {
               </div>
             </div>
             <div className="bg-slate-50 dark:bg-slate-950/50 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center mt-auto transition-colors">
-              <a
-                href={project.demoLink}
-                onClick={(e) => e.stopPropagation()}
-                target="_blank"
-                rel="noreferrer"
-                className="text-teal-600 dark:text-teal-500 hover:text-teal-800 dark:hover:text-teal-400 text-sm font-bold transition-colors"
-              >
-                View Project &rarr;
-              </a>
-              <a
-                href={project.githubLink}
-                onClick={(e) => e.stopPropagation()}
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 text-sm font-bold transition-colors"
-              >
-                Source Code
-              </a>
+              {project.appleStoreLink || project.googlePlayLink ? (
+                <div className="flex items-center gap-2.5 w-full justify-between">
+                  <div className="flex items-center gap-2">
+                    {project.appleStoreLink && (
+                      <a
+                        href={project.appleStoreLink}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-slate-800 dark:text-slate-100 hover:text-teal-600 dark:hover:text-teal-400 text-sm font-bold transition-colors"
+                      >
+                        <AppleIcon className="w-4 h-4 fill-current shrink-0" />
+                        <span>App Store</span>
+                      </a>
+                    )}
+                    {project.appleStoreLink && project.googlePlayLink && (
+                      <span className="text-slate-300 dark:text-slate-700">|</span>
+                    )}
+                    {project.googlePlayLink && (
+                      <a
+                        href={project.googlePlayLink}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 text-sm font-bold transition-colors"
+                      >
+                        <GooglePlayIcon className="w-4 h-4 fill-current shrink-0" />
+                        <span>Google Play</span>
+                      </a>
+                    )}
+                  </div>
+                  {project.githubLink && project.githubLink !== "#" && (
+                    <a
+                      href={project.githubLink}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 text-sm font-bold transition-colors"
+                    >
+                      Source Code
+                    </a>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {project.demoLink && project.demoLink !== "#" ? (
+                    <a
+                      href={project.demoLink}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-teal-600 dark:text-teal-500 hover:text-teal-800 dark:hover:text-teal-400 text-sm font-bold transition-colors"
+                    >
+                      View Project &rarr;
+                    </a>
+                  ) : (
+                    <span className="text-teal-700 dark:text-teal-400 text-sm font-semibold">
+                      {project.status || "Current Project"}
+                    </span>
+                  )}
+                  {project.githubLink && project.githubLink !== "#" && (
+                    <a
+                      href={project.githubLink}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 text-sm font-bold transition-colors"
+                    >
+                      Source Code
+                    </a>
+                  )}
+                </>
+              )}
             </div>
           </motion.div>
         ))}
@@ -166,7 +245,7 @@ const Projects = () => {
                   />
                 )}
                 <div>
-                  <div className="mb-1 text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">
+                  <div className="mb-1 text-xs sm:text-sm font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">
                     {selectedProject.category}
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
@@ -174,32 +253,63 @@ const Projects = () => {
                   </h3>
                 </div>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed text-sm sm:text-base">
                 {selectedProject.description}
               </p>
-              <div className="flex justify-end gap-3 md:gap-4 items-center">
-                {selectedProject.privacyLink && (
+              <div className="flex flex-wrap justify-between items-center gap-3 pt-2">
+                {selectedProject.privacyLink ? (
                   <Link 
                     to={selectedProject.privacyLink} 
-                    className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors mr-auto underline underline-offset-2"
+                    className="text-sm font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors underline underline-offset-2"
                   >
                     Privacy Policy
                   </Link>
-                )}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="px-4 py-2 text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
-                >
-                  Close
-                </button>
-                <a
-                  href={selectedProject.demoLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white px-6 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm"
-                >
-                  View Project &rarr;
-                </a>
+                ) : <div />}
+                <div className="flex flex-wrap gap-2.5 items-center">
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="px-4 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+                  >
+                    Close
+                  </button>
+                  {selectedProject.appleStoreLink && (
+                    <a
+                      href={selectedProject.appleStoreLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
+                    >
+                      <AppleIcon className="w-4 h-4 fill-current shrink-0" />
+                      <span>App Store</span>
+                    </a>
+                  )}
+                  {selectedProject.googlePlayLink && (
+                    <a
+                      href={selectedProject.googlePlayLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
+                    >
+                      <GooglePlayIcon className="w-4 h-4 fill-current shrink-0" />
+                      <span>Google Play</span>
+                    </a>
+                  )}
+                  {!selectedProject.appleStoreLink && !selectedProject.googlePlayLink && selectedProject.demoLink && selectedProject.demoLink !== "#" && (
+                    <a
+                      href={selectedProject.demoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
+                    >
+                      View Project &rarr;
+                    </a>
+                  )}
+                  {!selectedProject.appleStoreLink && !selectedProject.googlePlayLink && (!selectedProject.demoLink || selectedProject.demoLink === "#") && (
+                    <span className="inline-flex items-center px-4 py-2.5 rounded-lg bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-sm font-bold border border-teal-200/80 dark:border-teal-800/80">
+                      {selectedProject.status || "Current Project"}
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
           </motion.div>

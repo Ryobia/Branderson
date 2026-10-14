@@ -97,6 +97,7 @@ const Feedback = () => {
               >
                 <option value="Idle Rain">Idle Rain</option>
                 <option value="Atomic Allies">Atomic Allies</option>
+                <option value="Bloom & Battle">Bloom & Battle</option>
                 <option value="Other">Other / General</option>
               </select>
             </div>
