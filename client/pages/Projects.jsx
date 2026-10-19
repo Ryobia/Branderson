@@ -53,6 +53,7 @@ const allProjects = [
     techStack: ["Godot", "iOS", "Android"],
     status: "Testing Soon",
     image: bloomBattleIcon,
+    privacyLink: "/privacy/bloom-and-battle",
   },
   {
     id: 4,

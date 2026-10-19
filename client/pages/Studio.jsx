@@ -57,7 +57,8 @@ const studioGames = [
     description: 'A plant breeding and auto-battler where you breed plants together to create exciting fusions to take into the campaign against enemy pests. Features in-depth stats and passive traits to encourage min-maxing perfect specimens.',
     platform: ['iOS', 'Android'],
     status: 'Testing Soon',
-    image: bloomBattleIcon
+    image: bloomBattleIcon,
+    privacyLink: '/privacy/bloom-and-battle'
   }
 ];
 

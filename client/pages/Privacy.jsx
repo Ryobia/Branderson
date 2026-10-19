@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { motion } from 'framer-motion';
+import idleRainIcon from '../assets/icon_rain.png';
 
 const policyHTML = `
 <style>
@@ -59,17 +61,138 @@ word-break: break-word !important;
       <br><div><span data-custom-class='body_text'>This Privacy Policy was created using Termly's </span><a href="https://termly.io/products/privacy-policy-generator/" target="_blank" rel="noopener external" data-custom-class='link'>Privacy Policy Generator</a></div>`;
 
 const Privacy = () => {
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="py-12 md:py-20 max-w-4xl mx-auto"
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="py-8 sm:py-12 md:py-16 max-w-4xl mx-auto px-4 sm:px-6"
     >
-      {/* Forced white background so Termly's hardcoded text colors remain readable */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-12 overflow-x-auto">
+      {/* Top Navigation & Actions */}
+      <div className="mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <nav aria-label="Breadcrumb" className="text-sm font-medium text-slate-500 dark:text-slate-400">
+            <ol className="flex items-center space-x-2">
+              <li>
+                <Link to="/" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Home</Link>
+              </li>
+              <li><span>/</span></li>
+              <li>
+                <Link to="/studio" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Studio</Link>
+              </li>
+              <li><span>/</span></li>
+              <li className="text-slate-800 dark:text-slate-200 font-semibold">Idle Rain Privacy Policy</li>
+            </ol>
+          </nav>
+
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={handlePrint}
+              type="button"
+              className="inline-flex items-center px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-xs cursor-pointer"
+            >
+              Print Policy
+            </button>
+            <Link
+              to="/studio"
+              className="inline-flex items-center px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-teal-600 hover:bg-teal-700 text-white transition-colors shadow-xs"
+            >
+              Back to Studio
+            </Link>
+          </div>
+        </div>
+
+        {/* Policy Game Switcher Tabs */}
+        <div className="bg-slate-200/80 dark:bg-slate-800/80 p-1.5 rounded-xl inline-flex flex-wrap gap-1.5 max-w-full">
+          <Link
+            to="/privacy"
+            className="px-4 py-2 rounded-lg text-sm font-semibold transition-all shadow-xs bg-white dark:bg-slate-900 text-teal-700 dark:text-teal-400 border border-slate-200/60 dark:border-slate-700"
+          >
+            Idle Rain: ASMR Zen Garden
+          </Link>
+          <Link
+            to="/privacy/bloom-and-battle"
+            className="px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-900/60"
+          >
+            Bloom &amp; Battle
+          </Link>
+        </div>
+
+        {/* Header Hero Banner */}
+        <div className="mt-6 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-teal-50 via-cyan-50 to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-teal-950/40 border border-teal-100 dark:border-teal-900/40 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+            <img
+              src={idleRainIcon}
+              alt="Idle Rain Icon"
+              className="w-20 h-20 rounded-2xl shadow-md border border-teal-200 dark:border-teal-800 object-cover bg-white"
+            />
+            <div className="space-y-1.5">
+              <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-300">
+                Official Privacy Notice
+              </span>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Idle Rain: ASMR Zen Garden Privacy Policy
+              </h1>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+                Effective and last updated June 29, 2026. Applicable to the Idle Rain mobile application on iOS and Android.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-5 border-t border-teal-100 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm">
+            <div>
+              <span className="block text-slate-500 dark:text-slate-400">Developer</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200">Brandon Anderson</span>
+            </div>
+            <div>
+              <span className="block text-slate-500 dark:text-slate-400">Platforms</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200">iOS &amp; Android</span>
+            </div>
+            <div>
+              <span className="block text-slate-500 dark:text-slate-400">Payment Processors</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-200">Apple &amp; Google Play</span>
+            </div>
+            <div>
+              <span className="block text-slate-500 dark:text-slate-400">Inquiries</span>
+              <a
+                href="mailto:brandersonstudio@gmail.com"
+                className="font-semibold text-teal-600 dark:text-teal-400 hover:underline break-all"
+              >
+                brandersonstudio@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Policy Container */}
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 sm:p-10 md:p-14 overflow-x-auto privacy-policy-container">
         <div dangerouslySetInnerHTML={{ __html: policyHTML }} />
+      </div>
+
+      {/* Footer Support Card */}
+      <div className="mt-8 p-6 rounded-2xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 className="font-semibold text-slate-900 dark:text-white text-base">
+            Have questions about this Privacy Policy?
+          </h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-0.5">
+            You can reach Brandon Anderson directly at brandersonstudio@gmail.com for data rights and inquiries.
+          </p>
+        </div>
+        <a
+          href="mailto:brandersonstudio@gmail.com"
+          className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-teal-600 hover:bg-teal-700 text-white transition-colors shrink-0 shadow-xs"
+        >
+          Email Support
+        </a>
       </div>
     </motion.div>
   );
